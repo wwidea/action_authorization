@@ -19,22 +19,28 @@ class ApplicationController
   end
 end
 
+class EmptyPolicy < ActionAuthorization::BasePolicy
+end
+
 class DocumentPolicy < ActionAuthorization::BasePolicy
-  def show?
-    document.respond_to?(:allow_show) ? document.allow_show : false
+  
+  private
+  
+  def authorized?
+    document.owner == user.name
   end
 end
 
 class Document
-  attr_accessor :allow_show
+  attr_accessor :owner
   
-  def initialize(allow_show = false)
-    self.allow_show = allow_show
+  def initialize(owner: 'Audrey')
+    self.owner = owner
   end
 end
 
 class User
   def name
-    'Test User'
+    'Zachary'
   end
 end

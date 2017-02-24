@@ -8,7 +8,7 @@ class ActionAuthorizationTest < Minitest::Test
   end
   
   def test_should_authorize_action
-    assert authorize(Document.new(true))
+    assert authorize(Document.new(owner: 'Zachary'))
   end
   
   def test_should_return_corresponding_policy_object
