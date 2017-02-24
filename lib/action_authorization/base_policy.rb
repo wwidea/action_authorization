@@ -1,3 +1,5 @@
+require "active_support/inflector"
+
 module ActionAuthorization
   class BasePolicy
     attr_accessor :user, :object
