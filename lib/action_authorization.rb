@@ -1,5 +1,6 @@
 require "action_authorization/version"
 require "action_authorization/base_policy"
+require "active_support/core_ext/string/inflections"
 
 module ActionAuthorization
   def self.included(base)
