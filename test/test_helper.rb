@@ -9,9 +9,28 @@ class ApplicationController
   end
   
   include ActionAuthorization
+  
+  def current_user
+    User.new
+  end
+  
+  def action_name
+    'show'
+  end
 end
 
 class DocumentPolicy < ActionAuthorization::BasePolicy
+  def show?
+    document.respond_to?(:allow_show) ? document.allow_show : false
+  end
+end
+
+class Document
+  attr_accessor :allow_show
+  
+  def initialize(allow_show = false)
+    self.allow_show = allow_show
+  end
 end
 
 class User
