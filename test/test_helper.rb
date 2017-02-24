@@ -19,9 +19,6 @@ class ApplicationController
   end
 end
 
-class EmptyPolicy < ActionAuthorization::BasePolicy
-end
-
 class DocumentPolicy < ActionAuthorization::BasePolicy
   
   private

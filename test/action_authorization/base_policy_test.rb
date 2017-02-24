@@ -13,7 +13,7 @@ class ActionAuthorization::BasePolicyTest < Minitest::Test
   end
   
   def test_action_authorization_should_default_to_false
-    assert_authorized_action_methods(EmptyPolicy.new('user', 'object'), false)
+    assert_authorized_action_methods(ActionAuthorization::BasePolicy.new('user', 'object'), false)
   end
   
   def test_action_authorization_should_return_true
