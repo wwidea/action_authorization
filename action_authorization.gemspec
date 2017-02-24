@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Aaron Baldwin"]
   spec.email         = ["baldwina@brightwayslearning.org"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Rails controller object-level action authorization.}
+  spec.description   = %q{A base policy class for authorizing controller actions with access to the current_user and object.}
+  spec.homepage      = "https://github.com/wwidea/action_authorization"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
