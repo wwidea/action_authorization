@@ -18,7 +18,7 @@ Or install it yourself as:
 
     $ gem install action_authorization
 
-# Requirements
+## Requirements
 
 ActionAuthorization requires a **current_user** method that returns the currently logged in user.
 
@@ -36,12 +36,26 @@ Create an authorization policy for a controller.
 
 ``` ruby
 class DocumentPolicy
-  private
-  
-  def authorized?
+  def show?
     document.owner == user
   end
 end
+```
+
+Call **authorize** method in controller action.
+
+```ruby
+class DocumentController < ApplicationController
+  def show
+    @document = authorize(Document.find(params[:id]))
+  end
+end
+```
+
+Check if authorized when displaying a link in the view.
+
+```erb
+<%= link_to(@document.name, @document) if policy(@document).show? %>
 ```
 
 ## Development
