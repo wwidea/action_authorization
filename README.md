@@ -18,9 +18,31 @@ Or install it yourself as:
 
     $ gem install action_authorization
 
+# Requirements
+
+ActionAuthorization requires a **current_user** method that returns the currently logged in user.
+
 ## Usage
 
-TODO: Write usage instructions here
+Include the ActionAuthorization module in your ApplicationController (or indvidual controller(s))
+
+```ruby
+class ApplicationController < ActionController::Base
+  include ActionAuthorization
+end
+```
+
+Create an authorization policy for a controller.
+
+``` ruby
+class DocumentPolicy
+  private
+  
+  def authorized?
+    document.owner == user
+  end
+end
+```
 
 ## Development
 
