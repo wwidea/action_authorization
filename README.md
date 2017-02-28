@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-Create an authorization policy for a controller.
+Create an authorization policy for a resource.
 
 ``` ruby
 class DocumentPolicy
@@ -52,7 +52,7 @@ class DocumentController < ApplicationController
 end
 ```
 
-Check if authorized when displaying a link in the view.
+Check if authorized before displaying a link in the view.
 
 ```erb
 <%= link_to(@document.name, @document) if policy(@document).show? %>
