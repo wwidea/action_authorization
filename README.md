@@ -52,11 +52,21 @@ class DocumentController < ApplicationController
 end
 ```
 
+Pass a **policy_class** to authorize to override the default resource based policy.
+```ruby
+class DocumentController < ApplicationController
+  def show
+    @document = authorize(Document.find(params[:id]), policy_class: UserOwnerPolciy)
+  end
+end
+```
+
 Check if authorized before displaying a link in the view.
 
 ```erb
 <%= link_to(@document.name, @document) if policy(@document).show? %>
 ```
+
 
 ## Development
 
