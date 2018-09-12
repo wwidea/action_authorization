@@ -56,7 +56,7 @@ Pass a **policy_class** to authorize to override the default resource based poli
 ```ruby
 class DocumentController < ApplicationController
   def show
-    @document = authorize(Document.find(params[:id]), policy_class: UserOwnerPolciy)
+    @document = authorize(Document.find(params[:id]), policy_class: UserOwnerPolicy)
   end
 end
 ```
