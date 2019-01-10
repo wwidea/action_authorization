@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ActionAuthorizationTest < Minitest::Test
   def test_should_fail_to_authorize_action
-    assert_raises RuntimeError do
+    assert_raises ActionAuthorization::AuthorizationFailure do
       authorize(Document.new)
     end
   end
