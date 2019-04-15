@@ -35,7 +35,7 @@ end
 Create an authorization policy for a resource.
 
 ``` ruby
-class DocumentPolicy
+class DocumentPolicy < ActionAuthorization::BasePolicy
   def show?
     document.owner == user
   end
