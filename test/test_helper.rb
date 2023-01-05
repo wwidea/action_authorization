@@ -27,6 +27,9 @@ class DocumentPolicy < ActionAuthorization::BasePolicy
   end
 end
 
+class FooBarPolicy < ActionAuthorization::BasePolicy
+end
+
 class Document
   attr_accessor :owner
 
