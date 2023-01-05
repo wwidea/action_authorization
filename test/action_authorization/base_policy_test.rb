@@ -20,10 +20,26 @@ class ActionAuthorization::BasePolicyTest < Minitest::Test
     assert_authorized_action_methods(DocumentPolicy.new(User.new, Document.new(owner: 'Zachary')), true)
   end
 
+  def test_should_return_policy_type
+    assert_equal 'Document', document_policy.type
+  end
+
+  def test_should_return_policy_class
+    assert_equal Document, document_policy.type_class
+  end
+
+  def test_should_reuturn_nil_class_for_policy_class
+    assert_equal NilClass, FooBarPolicy.type_class
+  end
+
   private
 
   def document_policy
     DocumentPolicy.new(User.new, Document.new)
+  end
+
+  def foobar_policy
+    FooBarPolicy.new(User.new, Document.new)
   end
 
   def assert_authorized_action_methods(policy, value)

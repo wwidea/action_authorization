@@ -1,9 +1,3 @@
-require 'simplecov'
-SimpleCov.start do
-  add_filter '/test/'
-end
-
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'action_authorization'
 
 require 'minitest/autorun'
@@ -31,6 +25,9 @@ class DocumentPolicy < ActionAuthorization::BasePolicy
   def authorized?
     document.owner == user.name
   end
+end
+
+class FooBarPolicy < ActionAuthorization::BasePolicy
 end
 
 class Document
