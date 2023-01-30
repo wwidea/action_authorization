@@ -1,34 +1,34 @@
-require 'test_helper'
+require "test_helper"
 
-class ActionAuthorization::BasePolicyTest < Minitest::Test
-  def test_should_initialize_with_user_and_object
+class ActionAuthorization::BasePolicyTest < ActiveSupport::TestCase
+  test "should initialize with user and object" do
     policy = document_policy
 
     assert_equal 'Zachary', policy.user.name
     assert_equal 'Audrey',  policy.object.owner
   end
 
-  def test_should_create_alias_to_object_based_on_policy_class_name
+  test "should create alias to object based on policy class name" do
     assert document_policy.document
   end
 
-  def test_action_authorization_should_default_to_false
+  test "action authorization should default to false" do
     assert_authorized_action_methods(ActionAuthorization::BasePolicy.new('user', 'object'), false)
   end
 
-  def test_action_authorization_should_return_true
+  test "action authorization should return true" do
     assert_authorized_action_methods(DocumentPolicy.new(User.new, Document.new(owner: 'Zachary')), true)
   end
 
-  def test_should_return_policy_type
+  test "should return policy type" do
     assert_equal 'Document', document_policy.type
   end
 
-  def test_should_return_policy_class
+  test "should return policy class" do
     assert_equal Document, document_policy.type_class
   end
 
-  def test_should_reuturn_nil_class_for_policy_class
+  test "should reuturn nil class for policy class" do
     assert_equal NilClass, FooBarPolicy.type_class
   end
 
