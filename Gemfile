@@ -7,3 +7,4 @@ gemspec
 gem "guard"
 gem "guard-minitest"
 gem "rake"
+gem "ruby-lsp"
