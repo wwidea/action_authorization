@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    action_authorization (0.2.3)
+    action_authorization (0.3.0)
       activesupport (>= 5.0)
 
 GEM
