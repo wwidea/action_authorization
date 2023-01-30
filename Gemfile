@@ -6,5 +6,5 @@ gemspec
 
 gem "guard"
 gem "guard-minitest"
-gem "rake"
+gem "railties"
 gem "ruby-lsp"
