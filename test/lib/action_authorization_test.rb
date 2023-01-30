@@ -1,26 +1,26 @@
-require 'test_helper'
+require "test_helper"
 
-class ActionAuthorizationTest < Minitest::Test
-  def test_should_fail_to_authorize_action
+class ActionAuthorizationTest < ActiveSupport::TestCase
+  test "should fail to authorize action" do
     assert_raises ActionAuthorization::AuthorizationFailure do
       authorize(Document.new)
     end
   end
 
-  def test_should_authorize_action
+  test "should authorize action" do
     assert authorize(Document.new(owner: 'Zachary'))
   end
 
-  def test_should_return_corresponding_policy_object
+  test "should return corresponding policy object" do
     assert_equal DocumentPolicy, policy(Document.new).class
   end
 
-  def test_should_return_instance_of_supplied_policy_class
+  test "should return instance of supplied policy class" do
     assert_equal DocumentPolicy, policy('test', DocumentPolicy).class
   end
 
-  def test_that_it_has_a_version_number
-    refute_nil ::ActionAuthorization::VERSION
+  test "that it has a version number" do
+    assert_not_nil ::ActionAuthorization::VERSION
   end
 
   private
