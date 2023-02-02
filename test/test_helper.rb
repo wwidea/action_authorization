@@ -19,7 +19,6 @@ class ApplicationController
 end
 
 class DocumentPolicy < ActionAuthorization::BasePolicy
-
   private
 
   def authorized?
