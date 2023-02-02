@@ -7,8 +7,8 @@ module ActionAuthorization
     test "should initialize with user and object" do
       policy = document_policy
 
-      assert_equal 'Zachary', policy.user.name
-      assert_equal 'Audrey',  policy.object.owner
+      assert_equal "Zachary", policy.user.name
+      assert_equal "Audrey",  policy.object.owner
     end
 
     test "should create alias to object based on policy class name" do
@@ -16,15 +16,15 @@ module ActionAuthorization
     end
 
     test "action authorization should default to false" do
-      assert_authorized_action_methods(ActionAuthorization::BasePolicy.new('user', 'object'), false)
+      assert_authorized_action_methods(ActionAuthorization::BasePolicy.new("user", "object"), false)
     end
 
     test "action authorization should return true" do
-      assert_authorized_action_methods(DocumentPolicy.new(User.new, Document.new(owner: 'Zachary')), true)
+      assert_authorized_action_methods(DocumentPolicy.new(User.new, Document.new(owner: "Zachary")), true)
     end
 
     test "should return policy type" do
-      assert_equal 'Document', document_policy.type
+      assert_equal "Document", document_policy.type
     end
 
     test "should return policy class" do

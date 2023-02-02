@@ -5,7 +5,7 @@ module ActionAuthorization
     attr_accessor :user, :object
 
     def self.type
-      name.gsub('Policy', '')
+      name.gsub("Policy", "")
     end
 
     def self.type_class
