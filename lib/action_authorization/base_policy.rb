@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActionAuthorization
   class BasePolicy
     attr_accessor :user, :object
