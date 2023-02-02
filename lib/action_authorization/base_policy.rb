@@ -5,7 +5,7 @@ module ActionAuthorization
     attr_accessor :user, :object
 
     def self.type
-      name.gsub("Policy", "")
+      name.delete_suffix("Policy")
     end
 
     def self.type_class
