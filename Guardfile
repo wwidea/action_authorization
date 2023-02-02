@@ -34,5 +34,6 @@ class Guard::Shell
   def run_test(paths = [])
     puts("Running tests #{paths}") if paths&.any?
     system("bin/test #{paths.join(' ')}")
+    system("bundle exec rubocop #{paths.join(' ')}")
   end
 end
