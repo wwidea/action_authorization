@@ -1,4 +1,6 @@
-require 'action_authorization'
+# frozen_string_literal: true
+
+require "action_authorization"
 
 class ApplicationController
   def self.helper_method(method)
@@ -12,12 +14,11 @@ class ApplicationController
   end
 
   def action_name
-    'show'
+    "show"
   end
 end
 
 class DocumentPolicy < ActionAuthorization::BasePolicy
-
   private
 
   def authorized?
@@ -31,13 +32,13 @@ end
 class Document
   attr_accessor :owner
 
-  def initialize(owner: 'Audrey')
+  def initialize(owner: "Audrey")
     self.owner = owner
   end
 end
 
 class User
   def name
-    'Zachary'
+    "Zachary"
   end
 end

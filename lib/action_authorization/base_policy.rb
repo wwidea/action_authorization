@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module ActionAuthorization
   class BasePolicy
     attr_accessor :user, :object
 
     def self.type
-      name.gsub('Policy', '')
+      name.delete_suffix("Policy")
     end
 
     def self.type_class
@@ -21,6 +23,7 @@ module ActionAuthorization
 
     # create alias to object from subclass name
     def self.inherited(klass)
+      super
       klass.send(:alias_method, klass.type.underscore, :object)
     end
 

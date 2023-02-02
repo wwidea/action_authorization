@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class ActionAuthorizationTest < ActiveSupport::TestCase
@@ -8,7 +10,7 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
   end
 
   test "should authorize action" do
-    assert authorize(Document.new(owner: 'Zachary'))
+    assert authorize(Document.new(owner: "Zachary"))
   end
 
   test "should return corresponding policy object" do
@@ -16,7 +18,7 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
   end
 
   test "should return instance of supplied policy class" do
-    assert_equal DocumentPolicy, policy('test', DocumentPolicy).class
+    assert_equal DocumentPolicy, policy("test", DocumentPolicy).class
   end
 
   test "that it has a version number" do
