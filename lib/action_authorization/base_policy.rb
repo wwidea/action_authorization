@@ -23,6 +23,7 @@ module ActionAuthorization
 
     # create alias to object from subclass name
     def self.inherited(klass)
+      super
       klass.send(:alias_method, klass.type.underscore, :object)
     end
 
