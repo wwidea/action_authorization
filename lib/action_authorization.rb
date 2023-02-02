@@ -16,11 +16,8 @@ module ActionAuthorization
   protected
 
   def authorize(object, action: action_name, policy_class: nil)
-    if policy(object, policy_class).send("#{action}?")
-      object
-    else
-      raise ActionAuthorization::AuthorizationFailure
-    end
+    raise AuthorizationFailure unless policy(object, policy_class).public_send("#{action}?")
+    object
   end
 
   def policy(object, policy_class = nil)
