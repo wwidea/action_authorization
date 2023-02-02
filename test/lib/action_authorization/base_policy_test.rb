@@ -2,51 +2,53 @@
 
 require "test_helper"
 
-class ActionAuthorization::BasePolicyTest < ActiveSupport::TestCase
-  test "should initialize with user and object" do
-    policy = document_policy
+module ActionAuthorization
+  class BasePolicyTest < ActiveSupport::TestCase
+    test "should initialize with user and object" do
+      policy = document_policy
 
-    assert_equal 'Zachary', policy.user.name
-    assert_equal 'Audrey',  policy.object.owner
-  end
+      assert_equal 'Zachary', policy.user.name
+      assert_equal 'Audrey',  policy.object.owner
+    end
 
-  test "should create alias to object based on policy class name" do
-    assert document_policy.document
-  end
+    test "should create alias to object based on policy class name" do
+      assert document_policy.document
+    end
 
-  test "action authorization should default to false" do
-    assert_authorized_action_methods(ActionAuthorization::BasePolicy.new('user', 'object'), false)
-  end
+    test "action authorization should default to false" do
+      assert_authorized_action_methods(ActionAuthorization::BasePolicy.new('user', 'object'), false)
+    end
 
-  test "action authorization should return true" do
-    assert_authorized_action_methods(DocumentPolicy.new(User.new, Document.new(owner: 'Zachary')), true)
-  end
+    test "action authorization should return true" do
+      assert_authorized_action_methods(DocumentPolicy.new(User.new, Document.new(owner: 'Zachary')), true)
+    end
 
-  test "should return policy type" do
-    assert_equal 'Document', document_policy.type
-  end
+    test "should return policy type" do
+      assert_equal 'Document', document_policy.type
+    end
 
-  test "should return policy class" do
-    assert_equal Document, document_policy.type_class
-  end
+    test "should return policy class" do
+      assert_equal Document, document_policy.type_class
+    end
 
-  test "should reuturn nil class for policy class" do
-    assert_equal NilClass, FooBarPolicy.type_class
-  end
+    test "should reuturn nil class for policy class" do
+      assert_equal NilClass, FooBarPolicy.type_class
+    end
 
-  private
+    private
 
-  def document_policy
-    DocumentPolicy.new(User.new, Document.new)
-  end
+    def document_policy
+      DocumentPolicy.new(User.new, Document.new)
+    end
 
-  def foobar_policy
-    FooBarPolicy.new(User.new, Document.new)
-  end
+    def foobar_policy
+      FooBarPolicy.new(User.new, Document.new)
+    end
 
-  def assert_authorized_action_methods(policy, value)
-    %w(index? show? new? create? edit? update? destroy?).each do |method|
-      assert_equal value, policy.send(method)
+    def assert_authorized_action_methods(policy, value)
+      %w[index? show? new? create? edit? update? destroy?].each do |method|
+        assert_equal value, policy.send(method)
+      end
     end
   end
 end
