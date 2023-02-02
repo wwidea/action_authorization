@@ -7,4 +7,5 @@ gemspec
 gem "guard"
 gem "guard-shell"
 gem "railties"
-gem "ruby-lsp"
+gem "rubocop-rails",  require: false
+gem "ruby-lsp",       require: false
