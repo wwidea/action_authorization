@@ -9,5 +9,8 @@ gemspec
 gem "guard"
 gem "guard-shell"
 gem "railties"
-gem "rubocop-rails",  require: false
-gem "ruby-lsp",       require: false
+gem "rubocop-minitest",     require: false
+gem "rubocop-packaging",    require: false
+gem "rubocop-performance",  require: false
+gem "rubocop-rails",        require: false
+gem "ruby-lsp",             require: false
