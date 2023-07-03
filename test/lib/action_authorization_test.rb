@@ -14,11 +14,11 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
   end
 
   test "should return corresponding policy object" do
-    assert_equal DocumentPolicy, policy(Document.new).class
+    assert_instance_of DocumentPolicy, policy(Document.new)
   end
 
   test "should return instance of supplied policy class" do
-    assert_equal DocumentPolicy, policy("test", DocumentPolicy).class
+    assert_instance_of DocumentPolicy, policy("test", DocumentPolicy)
   end
 
   test "that it has a version number" do
