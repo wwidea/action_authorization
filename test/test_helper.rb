@@ -32,6 +32,12 @@ end
 class Document
   attr_accessor :owner
 
+  delegate :model_name, to: :class
+
+  def self.model_name
+    name
+  end
+
   def initialize(owner: "Audrey")
     self.owner = owner
   end
