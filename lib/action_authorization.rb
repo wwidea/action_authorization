@@ -26,6 +26,6 @@ module ActionAuthorization
   end
 
   def policy_class_for(object)
-    "#{object.class.name}Policy".constantize
+    "#{object.model_name}Policy".constantize
   end
 end
