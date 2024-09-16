@@ -11,6 +11,10 @@ module ActionAuthorization
       assert_equal "Audrey",  policy.object.owner
     end
 
+    test "should initialize with only a user" do
+      assert_nil DocumentPolicy.new(User.new).object
+    end
+
     test "should create alias to object based on policy class name" do
       assert document_policy.document
     end
@@ -31,7 +35,7 @@ module ActionAuthorization
       assert_equal Document, document_policy.type_class
     end
 
-    test "should reuturn nil class for policy class" do
+    test "should return nil class for policy class" do
       assert_equal NilClass, FooBarPolicy.type_class
     end
 

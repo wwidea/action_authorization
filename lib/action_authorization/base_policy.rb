@@ -16,7 +16,7 @@ module ActionAuthorization
 
     delegate :type, :type_class, to: :class
 
-    def initialize(user, object)
+    def initialize(user, object = nil)
       self.user = user
       self.object = object
     end
