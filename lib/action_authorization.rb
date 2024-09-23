@@ -4,6 +4,7 @@ require "active_support/core_ext/module/delegation"
 require "active_support/core_ext/string/inflections"
 require "action_authorization/version"
 require "action_authorization/base_policy"
+require "action_authorization/null_policy"
 require "action_authorization/authorization_failure"
 
 module ActionAuthorization
@@ -26,6 +27,6 @@ module ActionAuthorization
   end
 
   def policy_class_for(object)
-    "#{object.model_name}Policy".constantize
+    object.nil? ? NullPolicy : "#{object.model_name}Policy".constantize
   end
 end

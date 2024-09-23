@@ -3,14 +3,20 @@
 require "test_helper"
 
 class ActionAuthorizationTest < ActiveSupport::TestCase
-  test "should fail to authorize action" do
+  test "should authorize action" do
+    assert authorize(Document.new(owner: "Zachary"))
+  end
+
+  test "should fail to authorize action when document owner does not match user" do
     assert_raises ActionAuthorization::AuthorizationFailure do
       authorize(Document.new)
     end
   end
 
-  test "should authorize action" do
-    assert authorize(Document.new(owner: "Zachary"))
+  test "should not authorize action when object is nil" do
+    assert_raises ActionAuthorization::AuthorizationFailure do
+      authorize(nil)
+    end
   end
 
   test "should return corresponding policy object" do
@@ -21,8 +27,12 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
     assert_instance_of DocumentPolicy, policy("test", DocumentPolicy)
   end
 
-  test "that it has a version number" do
-    assert_not_nil ::ActionAuthorization::VERSION
+  test "should return null policy object" do
+    assert_instance_of ActionAuthorization::NullPolicy, policy(nil)
+  end
+
+  test "should have a version number" do
+    assert_not_nil ActionAuthorization::VERSION
   end
 
   private
