@@ -27,8 +27,6 @@ module ActionAuthorization
   end
 
   def policy_class_for(object)
-    "#{object.model_name}Policy".constantize
-  rescue NoMethodError
-    NullPolicy
+    object.nil? ? NullPolicy : "#{object.model_name}Policy".constantize
   end
 end
