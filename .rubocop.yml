@@ -9,6 +9,11 @@ plugins:
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.3
+  SuggestExtensions: false
+  Exclude:
+    - bin/*
+    - Guardfile
+    - vendor/bundle/**/*
 
 
 # Layout
