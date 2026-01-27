@@ -37,11 +37,11 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
 
   private
 
-  def authorize(*args)
-    ApplicationController.new.send(:authorize, *args)
+  def authorize(*)
+    ApplicationController.new.send(:authorize, *)
   end
 
-  def policy(*args)
-    ApplicationController.new.send(:policy, *args)
+  def policy(*)
+    ApplicationController.new.send(:policy, *)
   end
 end
