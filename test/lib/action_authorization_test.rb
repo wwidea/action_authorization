@@ -7,6 +7,10 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
     assert authorize(Document.new(owner: "Zachary"))
   end
 
+  test "should authorize action with additional keyword argument" do
+    assert authorize(Document, action: "submit", status: "draft")
+  end
+
   test "should fail to authorize action when document owner does not match user" do
     assert_raises ActionAuthorization::AuthorizationFailure do
       authorize(Document.new)
@@ -37,8 +41,8 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
 
   private
 
-  def authorize(*)
-    ApplicationController.new.send(:authorize, *)
+  def authorize(object, **)
+    ApplicationController.new.send(:authorize, object, **)
   end
 
   def policy(*)
