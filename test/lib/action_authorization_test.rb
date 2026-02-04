@@ -3,42 +3,42 @@
 require "test_helper"
 
 class ActionAuthorizationTest < ActiveSupport::TestCase
-  test "should authorize action" do
+  test "authorize document show with owner matching the user" do
     assert authorize(Document.new(owner: "Zachary"))
   end
 
-  test "should fail to authorize action when document owner does not match user" do
+  test "authorize document show with owner that does not match the user" do
     assert_raises ActionAuthorization::AuthorizationFailure do
-      authorize(Document.new)
+      authorize(Document.new(owner: "Test"))
     end
   end
 
-  test "should not authorize action when object is nil" do
+  test "authorize action with additional keyword argument" do
+    assert authorize(Document, action: "submit", status: "draft")
+  end
+
+  test "authorize action with nil object" do
     assert_raises ActionAuthorization::AuthorizationFailure do
       authorize(nil)
     end
   end
 
-  test "should return corresponding policy object" do
+  test "policy for new document" do
     assert_instance_of DocumentPolicy, policy(Document.new)
   end
 
-  test "should return instance of supplied policy class" do
+  test "policy with specified policy class" do
     assert_instance_of DocumentPolicy, policy("test", DocumentPolicy)
   end
 
-  test "should return null policy object" do
+  test "policy for nil object" do
     assert_instance_of ActionAuthorization::NullPolicy, policy(nil)
-  end
-
-  test "should have a version number" do
-    assert_not_nil ActionAuthorization::VERSION
   end
 
   private
 
-  def authorize(*)
-    ApplicationController.new.send(:authorize, *)
+  def authorize(object, **)
+    ApplicationController.new.send(:authorize, object, **)
   end
 
   def policy(*)

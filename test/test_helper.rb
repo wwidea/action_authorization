@@ -19,6 +19,10 @@ class ApplicationController
 end
 
 class DocumentPolicy < ActionAuthorization::BasePolicy
+  def submit?(status:)
+    status == "draft"
+  end
+
   private
 
   def authorized?
