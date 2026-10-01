@@ -35,6 +35,18 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
     assert_instance_of ActionAuthorization::NullPolicy, policy(nil)
   end
 
+  test "policy_for with a single object" do
+    assert_instance_of DocumentPolicy, policy_for(Document.new)
+  end
+
+  test "policy_for builds a nested resource before looking up its policy" do
+    folder = Folder.new
+    document_policy = policy_for([folder, Document])
+
+    assert_instance_of DocumentPolicy, document_policy
+    assert_same folder, document_policy.document.folder
+  end
+
   private
 
   def authorize(object, **)
@@ -43,5 +55,9 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
 
   def policy(*)
     ApplicationController.new.send(:policy, *)
+  end
+
+  def policy_for(*)
+    ApplicationController.new.send(:policy_for, *)
   end
 end
