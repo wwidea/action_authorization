@@ -3,8 +3,12 @@
 require "action_authorization"
 
 class ApplicationController
-  def self.helper_method(method)
-    method
+  def self.helper_methods
+    @helper_methods ||= []
+  end
+
+  def self.helper_method(*methods)
+    helper_methods.concat(methods)
   end
 
   include ActionAuthorization
@@ -34,7 +38,7 @@ class FooBarPolicy < ActionAuthorization::BasePolicy
 end
 
 class Document
-  attr_accessor :owner
+  attr_accessor :folder, :owner
 
   delegate :model_name, to: :class
 
@@ -42,8 +46,17 @@ class Document
     name
   end
 
-  def initialize(owner: "Audrey")
+  def initialize(owner: "Audrey", folder: nil)
     self.owner = owner
+    self.folder = folder
+  end
+end
+
+class Folder
+  ModelName = Struct.new(:element)
+
+  def model_name
+    ModelName.new("folder")
   end
 end
 
