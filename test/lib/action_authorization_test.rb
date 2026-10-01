@@ -39,7 +39,7 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
     assert_instance_of DocumentPolicy, policy_for(Document.new)
   end
 
-  test "policy_for builds a nested resource before looking up its policy" do
+  test "policy_for with an array" do
     folder = Folder.new
     document_policy = policy_for([folder, Document])
 
