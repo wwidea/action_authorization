@@ -55,8 +55,18 @@ end
 class Folder
   ModelName = Struct.new(:element)
 
-  def model_name
+  def self.base_class
+    Folder
+  end
+
+  def self.model_name
     ModelName.new("folder")
+  end
+end
+
+class SpecialFolder < Folder
+  def self.model_name
+    ModelName.new("special_folder")
   end
 end
 

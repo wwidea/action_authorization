@@ -47,6 +47,13 @@ class ActionAuthorizationTest < ActiveSupport::TestCase
     assert_same folder, document_policy.document.folder
   end
 
+  test "policy_for with an array uses the STI base class association name" do
+    folder = SpecialFolder.new
+    document_policy = policy_for([folder, Document])
+
+    assert_same folder, document_policy.document.folder
+  end
+
   private
 
   def authorize(object, **)
