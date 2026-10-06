@@ -38,6 +38,6 @@ module ActionAuthorization
 
   def policy_record_for(array)
     parent, model = array
-    model.new(parent.model_name.element.to_sym => parent)
+    model.new(parent.class.base_class.model_name.element.to_sym => parent)
   end
 end
